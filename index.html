@@ -966,6 +966,7 @@
           padding: 6px 12px;
           font-size: 0.8rem;
         }
+ 
       }
 
       .img-container {
@@ -973,15 +974,18 @@
             flex-direction: column;
             align-items: center;
             gap: 20px;
-            max-width: 800px;
+            max-width: 100%;
             margin: 0 auto;
             padding: 20px;
+            box-sizing: border-box;
         }
         
         .top-row {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 20px;
+            width: 100%;
         }
         
         .top-row img {
@@ -990,23 +994,63 @@
             object-fit: cover;
             border: 2px solid #ddd;
             border-radius: 8px;
+            max-width: 100%;
         }
         
         .middle-img {
             width: 950px;
-            height: 450px;
+            max-width: 100%;
+            height: auto;
+            aspect-ratio: 950/450;
             object-fit: cover;
             border: 3px solid #aaa;
             border-radius: 10px;
         }
         
-        .bottom-img {
-            width: 600px;
-            height: 300px;
-            object-fit: cover;
-            border: 3px solid #aaa;
-            border-radius: 10px;
+        /* Мобильдік версия үшін */
+        @media (max-width: 768px) {
+            .top-row {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+            
+            .top-row img {
+                width: calc(50% - 15px); /* Екі сурет қатар, арасында 10px бос орын */
+                height: auto;
+                aspect-ratio: 300/250;
+                min-width: 250px;
+                margin-bottom: 10px;
+            }
+            
+            .middle-img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 150/200;
+                min-width: 250px;
+
+            }
         }
+        
+        @media (max-width: 480px) {
+            .img-container {
+                padding: 10px;
+                gap: 15px;
+            }
+            
+            .top-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .top-row img {
+                width: 100%;
+                min-width: unset;
+                max-width: 300px;
+            }
+        }
+
     </style>
   </head>
   <body>
